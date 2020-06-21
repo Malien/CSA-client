@@ -1,0 +1,22 @@
+{
+  "name": "CSA-client",
+  "version": "1.0.0",
+  "main": "public/index.ts",
+  "repository": "https://github.com/Malien/CSA-client.git",
+  "author": "Yaroslav <q.link0.p@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/react": "^16.9.38",
+    "@types/react-dom": "^16.9.8",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.8",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "public": "^0.1.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}

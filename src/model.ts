@@ -5,6 +5,7 @@ interface Product {
     id: ProductID;
     name: string;
     price: number;
+    description?: string;
     count: number;
     groups: GroupID[];
 }

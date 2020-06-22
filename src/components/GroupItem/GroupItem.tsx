@@ -5,16 +5,19 @@ import NeumorphicBox from "../NeumorhicBox"
 import Cross from "../icons/Cross"
 
 interface GroupItemProps {
-    name: string;
+    name: string
+    immutable?: boolean
 }
 
-const GroupItem: React.FC<GroupItemProps> = ({ name }) => (
-    <NeumorphicBox base="dark" top="light" className="group-item">
+const GroupItem: React.FC<GroupItemProps> = ({ name, immutable }) => (
+    <NeumorphicBox top="light" className="group-item">
         <Checkbox className="group-item-check" />
         {name}
-        <NeumorphicBox tag="button" top="accent" base="light" active className="group-cross">
-            <Cross className="group-cross-icon" />
-        </NeumorphicBox>
+        {!immutable && (
+            <NeumorphicBox tag="button" top="accent" active className="group-cross">
+                <Cross className="group-cross-icon" />
+            </NeumorphicBox>
+        )}
     </NeumorphicBox>
 )
 

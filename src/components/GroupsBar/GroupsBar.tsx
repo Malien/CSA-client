@@ -11,6 +11,8 @@ interface GroupsBarProps {
 const GroupsBar: React.FC<GroupsBarProps> = ({ groups }) => (
     <div className="groups-container">
         <h2 className="groups-header">Groups:</h2>
+        {/* TODO: represent as unordered list */}
+        <GroupItem name="Uncategorized" immutable />
         {groups.map(({id, name}) => <GroupItem key={id} name={name} />)}
         <NeumorphicBox className="groups-field-container" top="light" inner>
             <Plus className="groups-field-button" />

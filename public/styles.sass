@@ -3,6 +3,7 @@
     --strong-font: "Rockwell", serif
     --text-color: #707070
     --accent-color: #502E59
+    --accent-transparent-color: #502e5900
     --white-bg: white
     --items-bg: #ebebeb
     --groups-bg: #dfdfdf
@@ -36,6 +37,16 @@ a
     &:hover
         text-decoration: underline
 
+.field-text
+    appearance: none
+    border: none
+    background: none
+    padding: 0
+    margin: 0
+    outline: 0
+    color: var(--text-color)
+
+
 .app-container 
     display: grid
     grid-template-columns: 1fr 400px
@@ -44,37 +55,9 @@ a
     font-family: var(--default-font)
     color: var(--text-color)
 
-.header
-    grid-area: header
-    height: 100%
-    background-color: var(--header-bg)
-    display: flex
-    justify-content: space-between
-    align-items: baseline
-    padding: 20px
-
-.header-logo
-    font-size: 36px
-    color: inherit
-
-    &:hover
-        text-decoration: none
-
-.header-user
-    font-size: 24px
-
 .items-container
     width: 100%
     height: 100%
     background-color: var(--items-bg)
     padding: 20px
-
-.groups-container
-    width: 100%
-    height: 100%
-    background-color: var(--groups-bg)
-    padding: 20px
-
-.groups-header
-    margin: 0
 

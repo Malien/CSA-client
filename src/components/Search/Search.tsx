@@ -9,7 +9,7 @@ interface SearchProps {
 const Search: React.FC<SearchProps> = ({ placeholder }) => (
     <div className="search-container">
         <LookingGlass className="search-button" strokeClassName="search-icon-stroke" />
-        <input className="search-field" type="text" placeholder={placeholder} />
+        <input className="search-field field-text" type="text" placeholder={placeholder} />
     </div>
 )
 

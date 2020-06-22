@@ -2,16 +2,35 @@
     --neu-bottom-shadow: #9f9f9f48
     --neu-top-shadow: white
     --neu-white: #e9e8e8
+    --neu-light: #e0e0e0
+    --nue-items: #f3f3f3 
+    --nue-angle: 171deg
+    --nue-accent-shadow: #502e59a1
+    --nue-accent: #7d488b 
 
 .neu-box
     padding: 10px
     border-radius: 25px
     box-shadow: 5px 5px 11px var(--neu-bottom-shadow), -5px -5px 11px var(--neu-top-shadow)
+    background: var(--nue-primary)
+    background: linear-gradient(var(--nue-angle), var(--nue-primary) 10%, var(--nue-secondary) 100%)
+
+.neu-box.neu-box-inner
+    --nue-angle: 178deg
+    background: linear-gradient(var(--nue-angle), var(--nue-secondary) 10%, var(--nue-primary) 100%)
+
+.nue-active:active
+    background: linear-gradient(var(--nue-angle), var(--nue-secondary) 10%, var(--nue-primary) 100%)
 
 .neu-top-white
-    background-color: var(--white-bg)
-    background: linear-gradient(171deg, var(--white-bg) 10%, var(--neu-white)  100%)
+    --nue-primary: var(--white-bg)
+    --nue-secondary: var(--neu-white)
 
-.neu-top-white.neu-box-inner
-    background-color: var(--white-bg)
-    background: linear-gradient(171deg, var(--neu-white) 10%, var(--white-bg)  100%)
+.neu-top-light
+    --nue-primary: var(--nue-items)
+    --nue-secondary: var(--neu-light)
+
+.neu-top-accent
+    box-shadow: 5px 5px 11px #502e59a1, -5px -5px 11px var(--neu-top-shadow)
+    --nue-primary: var(--nue-accent)
+    --nue-secondary: var(--accent-color)

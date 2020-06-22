@@ -1,0 +1,15 @@
+.checkbox
+    appearance: none
+    -webkit-appearance: none
+    border: solid 5px var(--accent-color)
+    height: 25px
+    width: 25px
+    border-radius: 12.5px
+    background: var(--accent-transparent-color)
+    box-shadow: 3px 3px 6px var(--nue-accent-shadow), -3px -3px 6px var(--neu-top-shadow), 3px 3px 6px var(--nue-accent-shadow) inset, -3px -3px 6px var(--neu-top-shadow) inset
+    transition: .2s ease-in
+
+    &:checked
+        background: var(--accent-color)
+        box-shadow: 3px 3px 6px var(--nue-accent-shadow), -3px -3px 6px var(--neu-top-shadow)
+        

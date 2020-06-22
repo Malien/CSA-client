@@ -1,4 +1,5 @@
 import React from "react"
+import "./header.sass"
 
 interface HeaderProps {
     username?: string;

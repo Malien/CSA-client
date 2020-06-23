@@ -1,0 +1,25 @@
+:root
+    --modal-bg: #ebebebb9
+
+.modal-canvas
+    position: absolute
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    -webkit-backdrop-filter: blur(10px)
+    transition: .2s ease-in
+
+.modal-bg
+    position: absolute
+    z-index: -1
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    background-color: var(--modal-bg)
+
+
+.modal-canvas.hidden
+    pointer-events: none
+    opacity: 0

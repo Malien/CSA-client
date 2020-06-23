@@ -16,7 +16,6 @@ const FieldText: React.FC<FieldTextProps> = ({
     useLayoutEffect(() => {
         const hide = hideRef.current
         const field = fieldRef.current
-        console.log(hide, field)
         if (hide && field) {
             hide.textContent = field.value
             field.style.width = hide.offsetWidth + "px"

@@ -64,7 +64,10 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ onAdd }) => {
                 active
                 top="accent"
                 onClick={() => {
-                    const errors = onAdd
+                    const pricenum = price && Number.parseFloat(price)
+                    if (name && pricenum && !Number.isNaN(pricenum) && count !== undefined) {
+                        onAdd?.(name, description || undefined, count, pricenum)
+                    }
                 }}
                 className="add-button"
             >

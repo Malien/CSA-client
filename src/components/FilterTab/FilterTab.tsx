@@ -7,6 +7,7 @@ import PriceFilter from "../PriceFilter"
 import ModalContext from "../ModalManager/ModalContext"
 import "./filter-tab.sass"
 import AddProductModal from "../AddProductModal"
+import { MessageContext } from "../MessageManager"
 
 interface FilterTabProps {
     className?: string
@@ -14,6 +15,7 @@ interface FilterTabProps {
 
 const FilterTab: React.FC<FilterTabProps> = ({ className }) => {
     const dispatcher = useContext(ModalContext)
+    const stdout = useContext(MessageContext)
 
     return (
         <div className={classnames(className, "filter-container")}>
@@ -25,7 +27,13 @@ const FilterTab: React.FC<FilterTabProps> = ({ className }) => {
             </NeumorphicBox>
             <NeumorphicBox
                 onClick={() => {
-                    dispatcher(dismiss => <AddProductModal onDismiss={dismiss} />)
+                    dispatcher((dismiss) => (
+                        <AddProductModal
+                            onAdd={(...args) => {
+                                stdout(args.join(", "))
+                            }}
+                        />
+                    ))
                 }}
                 tag="button"
                 top="white"

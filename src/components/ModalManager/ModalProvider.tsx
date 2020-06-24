@@ -6,33 +6,37 @@ import "./modal.sass"
 export const ModalProvider: React.FC = ({ children }) => {
     const [modal, setModal] = useState<JSX.Element | undefined>()
     const [hidden, setHidden] = useState(true)
+    const [closable, setClosable] = useState(true)
 
     const dismiss = () => {
         setHidden(true)
         setTimeout(() => setModal(undefined), 200)
     }
 
-    const dispatcher: ModalDispatcher = (newModal) => {
+    const dispatcher: ModalDispatcher = (newModal, persistent) => {
         if (typeof newModal === "function") setModal(newModal(dismiss))
         else setModal(newModal)
+        setClosable(!persistent)
         setHidden(false)
         return dismiss
     }
 
     useEffect(() => {
-        if (!hidden) {
-            window.addEventListener("keydown", ev => {
+        if (!hidden && closable) {
+            const handler = (ev: KeyboardEvent) => {
                 if (ev.key == "Escape") dismiss()
-            })
+            }
+            window.addEventListener("keydown", handler)
+            return () => window.removeEventListener("keydown", handler)
         }
-    }, [hidden])
+    }, [hidden, closable])
 
     return (
         <ModalContext.Provider value={dispatcher}>
             {children}
             <div className={classnames("modal-canvas", { hidden })}>
                 <div
-                    onClick={dismiss}
+                    onClick={() => {if (closable) dismiss()}}
                     className="modal-bg"
                 />
                 {modal}

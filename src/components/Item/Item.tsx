@@ -1,6 +1,6 @@
 import React from "react"
 import "./item.sass"
-import NeumorphicBox from "../NeumorhicBox"
+import NeumorphicBox from "../NeumorphicBox"
 import FieldText from "../FieldText"
 import GroupShim from "../GroupShim"
 

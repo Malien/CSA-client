@@ -2,7 +2,7 @@ import React from "react"
 import "./group-shim.sass"
 import Cross from "../icons/Cross"
 import Plus from "../icons/Plus"
-import NeumorphicBox from "../NeumorhicBox"
+import NeumorphicBox from "../NeumorphicBox"
 
 const mapping = ["Group", "Another"] as const
 

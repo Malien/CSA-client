@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import classnames from "classnames"
-import NeumorphicBox from "../NeumorhicBox"
+import NeumorphicBox from "../NeumorphicBox"
 import Search from "../Search"
 import Plus from "../icons/Plus"
 import PriceFilter from "../PriceFilter"

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import NeumorphicBox from "../NeumorhicBox"
+import NeumorphicBox from "../NeumorphicBox"
 import NeumorphicField from "../NeumorphicField"
 import "./add-product-modal.sass"
 import Plus from "../icons/Plus"

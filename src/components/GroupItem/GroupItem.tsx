@@ -1,7 +1,7 @@
 import React from "react"
 import "./group-item.sass"
 import Checkbox from "../Checkbox/Checkbox"
-import NeumorphicBox from "../NeumorhicBox"
+import NeumorphicBox from "../NeumorphicBox"
 import Cross from "../icons/Cross"
 
 interface GroupItemProps {

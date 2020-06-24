@@ -1,6 +1,6 @@
 import React from "react"
 import classnames from "classnames"
-import NeumorphicBox from "../NeumorhicBox"
+import NeumorphicBox from "../NeumorphicBox"
 import "./neumorphic-field.sass"
 
 interface NeumorphicFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {

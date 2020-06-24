@@ -1,6 +1,5 @@
 import React from "react"
-import classnames from "classnames"
-import "./neumorphic-box.sass"
+import Neumorphic from "./Neumorphic"
 
 interface NeumorphicBoxProps {
     top: "light" | "white" | "accent"
@@ -20,18 +19,9 @@ const NeumorphicBox: React.FC<NeumorphicBoxProps> = ({
     className,
     children,
 }) => (
-    <Tag
-        onClick={() => onClick?.()}
-        className={classnames(
-            className,
-            "neu-box",
-            { "neu-box-inner": inner },
-            { "nue-active": active },
-            `neu-top-${top}`
-        )}
-    >
-        {children}
-    </Tag>
+    <Neumorphic top={top} active={active} inner={inner}>
+        <Tag onClick={onClick} className={className}> {children} </Tag>
+    </Neumorphic>
 )
 
 export default NeumorphicBox

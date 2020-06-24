@@ -1,7 +1,7 @@
 import React from "react"
 import "./groups-bar.sass"
 import GroupItem from "../GroupItem"
-import NeumorphicBox from "../NeumorhicBox"
+import NeumorphicBox from "../NeumorphicBox"
 import Plus from "../icons/Plus"
 
 interface GroupsBarProps {

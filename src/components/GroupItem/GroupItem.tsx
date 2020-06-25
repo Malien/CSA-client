@@ -2,8 +2,7 @@ import React from "react"
 import "./group-item.sass"
 import Checkbox from "../Checkbox/Checkbox"
 import NeumorphicBox from "../NeumorphicBox"
-import Cross from "../icons/Cross"
-import Neumorphic from "../Neumorphic"
+import CloseButton from "../CloseButton"
 
 interface GroupItemProps {
     name: string
@@ -15,15 +14,12 @@ interface GroupItemProps {
 
 const GroupItem: React.FC<GroupItemProps> = ({ name, immutable, onDelete, onChange }) => (
     <NeumorphicBox top="light" className="group-item">
-        <Checkbox className="group-item-check" onChange={event => onChange?.(event.target.checked)} />
+        <Checkbox
+            className="group-item-check"
+            onChange={event => onChange?.(event.target.checked)}
+        />
         {name}
-        {!immutable && (
-            <Neumorphic top="accent" active>
-                <button onClick={onDelete} className="group-cross">
-                    <Cross className="group-cross-icon" />
-                </button>
-            </Neumorphic>
-        )}
+        {!immutable && <CloseButton onClick={onDelete} />}
     </NeumorphicBox>
 )
 

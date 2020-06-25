@@ -7,15 +7,20 @@ import PriceFilter from "../PriceFilter"
 import ModalContext from "../ModalManager/ModalContext"
 import "./filter-tab.sass"
 import AddProductModal from "../AddProductModal"
-import { MessageContext } from "../MessageManager"
+import Neumorphic from "../Neumorphic"
 
 interface FilterTabProps {
     className?: string
+    onProduct?: (
+        name: string,
+        description: string | undefined,
+        count: number,
+        price: number
+    ) => void
 }
 
-const FilterTab: React.FC<FilterTabProps> = ({ className }) => {
-    const dispatcher = useContext(ModalContext)
-    const stdout = useContext(MessageContext)
+const FilterTab: React.FC<FilterTabProps> = ({ className, onProduct }) => {
+    const modal = useContext(ModalContext)
 
     return (
         <div className={classnames(className, "filter-container")}>
@@ -25,22 +30,23 @@ const FilterTab: React.FC<FilterTabProps> = ({ className }) => {
             <NeumorphicBox top="white" className="filter-price">
                 <PriceFilter />
             </NeumorphicBox>
-            <NeumorphicBox
-                onClick={() => {
-                    dispatcher((dismiss) => (
-                        <AddProductModal
-                            onAdd={(...args) => {
-                                stdout(args.join(", "))
-                            }}
-                        />
-                    ))
-                }}
-                tag="button"
-                top="white"
-                className="filter-add"
-            >
-                <Plus className="filter-plus" strokeClassName="filter-plus-stroke" />
-            </NeumorphicBox>
+            <Neumorphic top="white">
+                <button
+                    onClick={() =>
+                        modal(dismiss => (
+                            <AddProductModal
+                                onAdd={(...args) => {
+                                    onProduct?.(...args)
+                                    dismiss()
+                                }}
+                            />
+                        ))
+                    }
+                    className="filter-add"
+                >
+                    <Plus className="filter-plus" strokeClassName="filter-plus-stroke" />
+                </button>
+            </Neumorphic>
         </div>
     )
 }

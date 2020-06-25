@@ -29,7 +29,23 @@ const Products: React.FC = () => {
         }
     }, [token])
 
-    return <ProductGrid products={products} />
+    const deleteHandler = (id: ProductID) => {
+        if (token) {
+            fetch(`${API_URL}/api/good/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+                .then(res => res.json())
+                .then(handleServerError)
+                .then(() => {
+                    dispatch({ type: "remove-product", id })
+                })
+        } else stderr("You must be logged in to add products")
+    }
+
+    return <ProductGrid products={products} onDelete={deleteHandler} />
 }
 
 export default Products

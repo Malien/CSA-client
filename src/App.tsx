@@ -2,13 +2,12 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { useDispatch } from "react-redux"
 import "./app.sass"
-import FilterTab from "./components/FilterTab"
 import GroupsBar from "./components/GroupsBar"
 import Header from "./components/Header"
-import Products from "./components/Products"
 import Providers from "./components/Providers"
 import { store } from "./state"
 import useLogin from "./useLogin"
+import ItemsBar from "./components/ItemsBar"
 
 const App: React.FC = () => {
     const { login } = useLogin()
@@ -16,14 +15,8 @@ const App: React.FC = () => {
 
     return (
         <div className="app-container">
-            <Header
-                username={login}
-                onLogout={() => dispatch({ type: "logout" })}
-            />
-            <div className="items-container">
-                <FilterTab className="items-sticky"/>
-                <Products />
-            </div>
+            <Header username={login} onLogout={() => dispatch({ type: "logout" })} />
+            <ItemsBar />
             <GroupsBar />
         </div>
     )

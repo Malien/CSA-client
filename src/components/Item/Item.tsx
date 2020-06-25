@@ -3,13 +3,16 @@ import "./item.sass"
 import NeumorphicBox from "../NeumorphicBox"
 import FieldText from "../FieldText"
 import GroupShim from "../GroupShim"
+import CloseButton from "../CloseButton"
 
 interface ItemProps {
     product: Product
+    onDelete?: () => void
 }
 
 const Item: React.FC<ItemProps> = ({
     product: { id, name, description, count, price, groups },
+    onDelete
 }) => (
     <NeumorphicBox top="white" className="item-container">
         <div className="item-heading item-margin">
@@ -28,6 +31,7 @@ const Item: React.FC<ItemProps> = ({
             <FieldText className="item-field item-accent" value={count} /> x{" "}
             <FieldText className="item-field item-accent" value={price} />$
         </div>
+        <CloseButton onClick={onDelete} className="item-delete" />
     </NeumorphicBox>
 )
 

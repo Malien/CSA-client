@@ -86,7 +86,17 @@ interface SetProductsAction {
     products: Product[]
 }
 
-type ProductsAction = SetProductsAction
+interface AddProductAction {
+    type: "add-product"
+    product: Product
+}
+
+interface RemoveProductAction {
+    type: "remove-product"
+    id: ProductID
+}
+
+type ProductsAction = SetProductsAction | AddProductAction | RemoveProductAction
 
 const products: Reducer<ProductsState, ProductsAction> = (state = {}, action) => {
     switch (action.type) {
@@ -95,6 +105,13 @@ const products: Reducer<ProductsState, ProductsAction> = (state = {}, action) =>
                 (acc, current) => ({ ...acc, [current.id]: current }),
                 {}
             )
+        case "add-product":
+            return { ...state, [action.product.id]: action.product }
+
+        case "remove-product":
+            const clone = { ...state }
+            delete clone[action.id]
+            return clone
     }
     return state
 }
@@ -131,7 +148,6 @@ const groups: Reducer<GroupsState, GroupsAction> = (state = {}, action) => {
             const clone = { ...state }
             delete clone[action.id]
             return clone
-
     }
     return state
 }

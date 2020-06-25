@@ -1,13 +1,22 @@
 .item-container
     padding: 20px 0
     position: relative
+    overflow: hidden
 
 .item-name
+    appearance: none
+    border: none
+    outline: 0
+    flex-grow: 0
     margin: 0
-    margin-right: 60px
+    word-wrap: break-word
+    word-break: break-word
     font-size: 24px
     color: var(--accent-color)
     font-family: var(--strong-font)
+    height: min-content
+    resize: none
+    margin-right: 70px
 
 input.item-desc
     display: block
@@ -17,9 +26,9 @@ input.item-desc
 .item-heading
     display: flex
     align-items: baseline
+    width: 100%
 
 .item-id
-    display: flex
     width: min-content
     margin-right: 10px
     font-size: 18px

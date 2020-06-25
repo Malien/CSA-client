@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import classnames from "classnames"
 import NeumorphicBox from "../NeumorphicBox"
 import Search from "../Search"
@@ -17,18 +17,30 @@ interface FilterTabProps {
         count: number,
         price: number
     ) => void
+    onName?: (name?: string) => void
+    onFrom?: (from?: number) => void
+    onTo?: (to?: number) => void
 }
 
-const FilterTab: React.FC<FilterTabProps> = ({ className, onProduct }) => {
+const FilterTab: React.FC<FilterTabProps> = ({ className, onProduct, onName, onTo, onFrom }) => {
     const modal = useContext(ModalContext)
+    const [name, setName] = useState("")
 
     return (
         <div className={classnames(className, "filter-container")}>
             <NeumorphicBox inner top="white" className="filter-search">
-                <Search placeholder="Search" />
+                <Search
+                    placeholder="Search"
+                    value={name}
+                    onChange={event => setName(event.target.value)}
+                    onSubmit={event => {
+                        event.preventDefault()
+                        onName?.(name || undefined)
+                    }}
+                />
             </NeumorphicBox>
             <NeumorphicBox top="white" className="filter-price">
-                <PriceFilter />
+                <PriceFilter onTo={onTo} onFrom={onFrom} />
             </NeumorphicBox>
             <Neumorphic top="white">
                 <button

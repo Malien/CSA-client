@@ -17,8 +17,8 @@ const Products: React.FC = () => {
         if (token) {
             fetch(`${API_URL}/api/goods`, {
                 headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+                    Authorization: `Bearer ${token}`,
+                },
             })
                 .then(res => res.json())
                 .then(handleServerError)
@@ -34,8 +34,8 @@ const Products: React.FC = () => {
             fetch(`${API_URL}/api/good/${id}`, {
                 method: "DELETE",
                 headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+                    Authorization: `Bearer ${token}`,
+                },
             })
                 .then(res => res.json())
                 .then(handleServerError)
@@ -45,7 +45,37 @@ const Products: React.FC = () => {
         } else stderr("You must be logged in to add products")
     }
 
-    return <ProductGrid products={products} onDelete={deleteHandler} />
+    const changeHandler = <T extends any>(
+        toProductChange: (value: T) => ProductChange
+    ) => (id: ProductID, change: T) => {
+        if (token) {
+            const productChange = toProductChange(change)
+            fetch(`${API_URL}/api/good/${id}`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(productChange),
+            })
+                .then(res => res.json())
+                .then(handleServerError)
+                .then(() => {
+                    dispatch({ type: "product-change", id, change: productChange })
+                })
+                .catch(notifyUser)
+        } else stderr("You must be logged in to add products")
+    }
+
+    return (
+        <ProductGrid
+            products={products}
+            onDelete={deleteHandler}
+            onNameChange={changeHandler(name => ({ name }))}
+            onCountChange={changeHandler(count => ({ count }))}
+            onPriceChange={changeHandler(price => ({ price }))}
+        />
+    )
 }
 
 export default Products

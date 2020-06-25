@@ -10,6 +10,8 @@ interface Product {
     groups: GroupID[];
 }
 
+type ProductChange = Partial<Omit<Product, "id">>
+
 interface Group {
     id: GroupID;
     name: string;

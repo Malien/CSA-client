@@ -60,7 +60,15 @@ const GroupsBar: React.FC = () => {
             .catch(notifyUser)
     }
 
-    return <GroupsList groups={groups} onAdd={addHandler} onDelete={deleteHandler} />
+    const changeHandler = (id: GroupID, chekced: boolean) => {
+        if (chekced) {
+            dispatch({ type: "filter-add", id })
+        } else {
+            dispatch({ type: "filter-remove", id })
+        }
+    }
+
+    return <GroupsList groups={groups} onAdd={addHandler} onDelete={deleteHandler} onChange={changeHandler} />
 }
 
 export default GroupsBar

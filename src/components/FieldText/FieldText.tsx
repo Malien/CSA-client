@@ -18,7 +18,7 @@ const FieldText: React.FC<FieldTextProps> = ({
         const field = fieldRef.current
         if (hide && field) {
             hide.textContent = field.value
-            field.style.width = hide.offsetWidth + "px"
+            field.style.width = hide.offsetWidth + 5 + "px"
         }
     }, [value, hideRef.current, fieldRef.current])
 

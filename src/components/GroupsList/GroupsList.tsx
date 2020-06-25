@@ -4,11 +4,11 @@ import GroupItem from "../GroupItem"
 import NeumorphicBox from "../NeumorphicBox"
 import Plus from "../icons/Plus"
 
-interface GroupsBarProps {
+interface GroupsListProps {
     groups: Group[];
 }
 
-const GroupsBar: React.FC<GroupsBarProps> = ({ groups }) => (
+const GroupsBar: React.FC<GroupsListProps> = ({ groups }) => (
     <div className="groups-container">
         <h2 className="groups-header">Groups:</h2>
         {/* TODO: represent as unordered list */}

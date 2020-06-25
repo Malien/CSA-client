@@ -1,15 +1,23 @@
-import { Reducer, createStore, combineReducers, CombinedState, applyMiddleware, Dispatch } from "redux"
-import reduxThunk from "redux-thunk";
+import {
+    Reducer,
+    createStore,
+    combineReducers,
+    CombinedState,
+    applyMiddleware,
+    Dispatch,
+} from "redux"
+import reduxThunk from "redux-thunk"
 import reduxLogger from "redux-logger"
+import { composeWithDevTools } from "redux-devtools-extension"
 import jwt_decode from "jwt-decode"
-import inShapeOf from "./util/inShapeOf";
+import inShapeOf from "./util/inShapeOf"
 
 const { API_URL } = process.env
 
 const UserdataShape = {
     userid: Number,
     token: String,
-    login: String
+    login: String,
 }
 
 interface AuthState {
@@ -45,7 +53,7 @@ const auth: Reducer<AuthState, AuthAction> = (state, action) => {
             try {
                 const parsed = JSON.parse(userdata)
                 if (inShapeOf(parsed, UserdataShape)) return parsed
-            } catch { }
+            } catch {}
         }
         localStorage.removeItem("userdata")
         return {}
@@ -83,7 +91,10 @@ type ProductsAction = SetProductsAction
 const products: Reducer<ProductsState, ProductsAction> = (state = {}, action) => {
     switch (action.type) {
         case "set-products":
-            return action.products.reduce((acc, current) => ({ ...acc, [current.id]: current }), {})
+            return action.products.reduce(
+                (acc, current) => ({ ...acc, [current.id]: current }),
+                {}
+            )
     }
     return state
 }
@@ -95,18 +106,47 @@ interface SetGroupsAction {
     groups: Group[]
 }
 
-type GroupsAction = SetGroupsAction
+interface AddGroupAction {
+    type: "add-group"
+    group: Group
+}
+
+interface RemoveGroupAction {
+    type: "remove-group"
+    id: GroupID
+}
+
+type GroupsAction = SetGroupsAction | AddGroupAction | RemoveGroupAction
 
 const groups: Reducer<GroupsState, GroupsAction> = (state = {}, action) => {
     switch (action.type) {
         case "set-groups":
-            return action.groups.reduce((acc, current) => ({ ...acc, [current.id]: current }), {})
+            return action.groups.reduce(
+                (acc, current) => ({ ...acc, [current.id]: current }),
+                {}
+            )
+        case "add-group":
+            return { ...state, [action.group.id]: action.group }
+        case "remove-group":
+            const clone = { ...state }
+            delete clone[action.id]
+            return clone
+
     }
     return state
 }
 
-export const store = createStore(combineReducers({ auth, products, groups }), applyMiddleware(reduxThunk, reduxLogger))
+const composeEnhancers = composeWithDevTools({ trace: true })
+
+export const store = createStore(
+    combineReducers({ auth, products, groups }),
+    composeEnhancers(applyMiddleware(reduxThunk, reduxLogger))
+)
 export type StoreType = typeof store
-export type StateType = CombinedState<{ auth: AuthState; products: ProductsState, groups: GroupsState }>
+export type StateType = CombinedState<{
+    auth: AuthState
+    products: ProductsState
+    groups: GroupsState
+}>
 export type ActionType = AuthAction | ProductsAction | GroupsAction
 export type DispatchType = Dispatch<ActionType>

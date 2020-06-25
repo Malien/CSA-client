@@ -16,8 +16,8 @@ const GroupsBar: React.FC = () => {
         if (token) {
             fetch(`${API_URL}/api/groups`, {
                 headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+                    Authorization: `Bearer ${token}`,
+                },
             })
                 .then(res => res.json())
                 .then(handleServerError)
@@ -28,7 +28,39 @@ const GroupsBar: React.FC = () => {
         }
     }, [token])
 
-    return <GroupsList groups={groups} />
+    const addHandler = (name: string) => {
+        fetch(`${API_URL}/api/group`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name }),
+        })
+            .then(res => res.json())
+            .then(handleServerError)
+            .then(({ group }) => {
+                dispatch({ type: "add-group", group })
+            })
+            .catch(notifyUser)
+    }
+
+    const deleteHandler = (id: GroupID) => {
+        fetch(`${API_URL}/api/group/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then(res => res.json())
+            .then(handleServerError)
+            .then(() => {
+                dispatch({ type: "remove-group", id })
+            })
+            .catch(notifyUser)
+    }
+
+    return <GroupsList groups={groups} onAdd={addHandler} onDelete={deleteHandler} />
 }
 
 export default GroupsBar

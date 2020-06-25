@@ -8,11 +8,6 @@ const MessageProvider: React.FC = ({ children }) => {
     const [message, setMessage] = useState<string>()
     const [hidden, setHidden] = useState(true)
 
-    const dispatcher: MessageDispatcher = newMessage => {
-        console.log(newMessage)
-        setMessage(newMessage)
-    }
-
     useEffect(() => {
         if (message) {
             setHidden(false)
@@ -27,7 +22,7 @@ const MessageProvider: React.FC = ({ children }) => {
     }, [message])
 
     return (
-        <MessageContext.Provider value={dispatcher}>
+        <MessageContext.Provider value={setMessage}>
             {children}
             <Neumorphic top="white">
                 <div className={classnames("message-canvas", { hidden })}>{message}</div>

@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useLayoutEffect } from "react"
 import classnames from "classnames"
+import React, { useLayoutEffect, useRef } from "react"
 import "./field-text.sass"
 
 interface FieldTextProps extends React.InputHTMLAttributes<HTMLInputElement> {}

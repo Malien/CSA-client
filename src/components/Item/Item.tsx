@@ -1,12 +1,11 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useRef, useState } from "react"
 import ContentEditable from "react-contenteditable"
-import sanitizeHtml from "sanitize-html"
-import "./item.sass"
-import NeumorphicBox from "../NeumorphicBox"
+import { toCountNumber } from "../../util/numbers"
+import CloseButton from "../CloseButton"
 import FieldText from "../FieldText"
 import GroupShim from "../GroupShim"
-import CloseButton from "../CloseButton"
-import { toCountNumber } from "../../util/numbers"
+import NeumorphicBox from "../NeumorphicBox"
+import "./item.sass"
 
 interface ItemProps {
     product: Product

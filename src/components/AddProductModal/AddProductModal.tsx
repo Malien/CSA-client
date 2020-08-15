@@ -1,10 +1,9 @@
 import React, { useState } from "react"
-import NeumorphicBox from "../NeumorphicBox"
+import { toCountNumber } from "../../util/numbers"
+import Plus from "../icons/Plus"
+import Neumorphic from "../Neumorphic"
 import NeumorphicField from "../NeumorphicField"
 import "./add-product-modal.sass"
-import Plus from "../icons/Plus"
-import { toCountNumber } from "../../util/numbers"
-import Neumorphic from "../Neumorphic"
 
 interface AddProductModalProps {
     onAdd?: (
@@ -30,7 +29,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ onAdd }) => {
                     if (
                         name &&
                         pricenum &&
-                        !Number.isNaN(pricenum) &&
                         count !== undefined &&
                         onAdd
                     ) {

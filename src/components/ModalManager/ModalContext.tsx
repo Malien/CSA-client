@@ -1,5 +1,4 @@
-import React, { createContext, useState, useRef } from "react"
-import classnames from "classnames"
+import { createContext } from "react"
 
 export type ModalDispatcher = (modal: (((dismiss: () => void) => JSX.Element) | JSX.Element), persistent?: boolean) => () => void
 

@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect } from "react"
-import "./items-bar.sass"
+import qs from "qs"
+import React, { useContext, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { DispatchType, StateType } from "../../state"
+import { API_URL, createNotifier, handleServerError } from "../../util/api"
 import FilterTab from "../FilterTab"
-import Products from "../Products"
 import { MessageContext } from "../MessageManager"
-import { createNotifier, API_URL, handleServerError } from "../../util/api"
-import { useSelector, useDispatch } from "react-redux"
-import { StateType, DispatchType } from "../../state"
-import qs from "qs";
+import Products from "../Products"
+import "./items-bar.sass"
 
 const ItemsBar: React.FC = () => {
     const token = useSelector((state: StateType) => state.auth.token)

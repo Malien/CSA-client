@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react"
 import classnames from "classnames"
-import MessageContext, { MessageDispatcher } from "./MessageContext"
-import "./message-manager.sass"
+import React, { useEffect, useState } from "react"
 import Neumorphic from "../Neumorphic"
+import "./message-manager.sass"
+import MessageContext from "./MessageContext"
 
 const MessageProvider: React.FC = ({ children }) => {
     const [message, setMessage] = useState<string>()

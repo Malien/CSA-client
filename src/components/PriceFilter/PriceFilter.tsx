@@ -25,7 +25,7 @@ const PriceFilter: React.FC<PriceFilterProps> = ({ onTo, onFrom }) => {
                 }}
                 onBlur={() => {
                     const pricenum = Number.parseFloat(from)
-                    if (pricenum && !Number.isNaN(pricenum)) {
+                    if (pricenum) {
                         onFrom?.(pricenum)
                     }
                 }}
@@ -45,7 +45,7 @@ const PriceFilter: React.FC<PriceFilterProps> = ({ onTo, onFrom }) => {
                 }}
                 onBlur={() => {
                     const pricenum = Number.parseFloat(to)
-                    if (pricenum && !Number.isNaN(pricenum)) {
+                    if (pricenum) {
                         onTo?.(pricenum)
                     }
                 }}

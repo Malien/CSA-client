@@ -36,7 +36,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sanitize-html": "^1.27.0",
+    "sanitize-html": "^2.3.2",
     "src": "^1.1.2"
   }
 }
